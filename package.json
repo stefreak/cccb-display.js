@@ -1,0 +1,26 @@
+{
+    "name" : "cccb-display",
+    "version" : "0.0.1",
+    "description" : "Library for displaying something nice on the led-display at the cccb",
+    "main" : "./index.js",
+    "repository" : {
+        "type" : "git",
+        "url" : "http://github.com/stefreak/cccb-display.js.git"
+    },
+    "keywords": [
+        "cccb",
+        "led",
+        "udp"
+    ],
+    "author" : {
+        "name" : "Steffen Neubauer",
+        "email" : "stefreak@stefreak.de",
+        "url" : "http://stefreak.de"
+    },
+    "dependencies" : {
+        "buffers" : ">=0.0.1",
+        "async" : ">=0.1.8",
+        "hexy" : ">=0.1.3"
+    },
+    "engine" : ["node >=0.2.0"]
+}
