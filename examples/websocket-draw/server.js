@@ -86,13 +86,11 @@ io.on('connection', function(client){
   });
 
   client.on('disconnect', function() {
-    var new_clients = clients;
     for (i in clients) {
-      c = clients[i];
-      if (c !== clients)
-        new_clients.unshift(client);
+      if (clients[i] === client) {
+        delete clients[i];
+      }
     }
-    clients = new_clients;
   });
 });
 
