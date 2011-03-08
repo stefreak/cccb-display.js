@@ -74,7 +74,7 @@ io.on('connection', function(client){
           break;
         case 'pixel':
           disp.request({cmd: 3, data: 'coordinates: ' + m.x + ',' + m.y + '               '}, function(err) {
-            if (err) return client.send('error', 'could not send to display');
+            if (err) return client.send({'error': 'could not send to display'});
             broadcast({pixel: {x: m.x, y: m.y}});
           });
           break;
