@@ -10,7 +10,6 @@ var display;
     self.socket.connect();
     
     self.socket.on('message', function(msg){
-      console.log(msg);
       for (key in msg) {
         m = msg[key];
         switch (key) {
@@ -21,7 +20,7 @@ var display;
             //drawCanvasPixel(pos.x, pos.y);
             break;
           case 'error':
-            $('#debug').text('Error!');
+            $('#debug').text('Error: ' + m);
             break;
           default:
             break;
@@ -34,7 +33,7 @@ var display;
     });
 
     canvas.mousemove(function(e) {
-      self.socket.send({pixel: {x: e.pageX, y:e.pageY}});
+      self.socket.send({pixel: {x: e.offsetX, y:e.offsetY}});
     }, false);
   }
 

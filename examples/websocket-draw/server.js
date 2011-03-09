@@ -15,6 +15,7 @@ server = http.createServer(function(req, res){
     case '/index.html':
     case '/style.css':
     case '/client.js':
+    case '/jquery-1.5.1.min.js':
       sendFile(res, path);
       break;
     default:
@@ -62,10 +63,8 @@ io.on('connection', function(client){
   clients.unshift(client);
 
   client.on('message', function(msg) {
-    console.log(msg);
     for (key in msg) {
       m = msg[key];
-
       switch(key) {
         case 'request':
           disp.request(m, function(err) {
@@ -74,12 +73,12 @@ io.on('connection', function(client){
           break;
         case 'pixel':
           disp.request({cmd: 3, data: 'coordinates: ' + m.x + ',' + m.y + '               '}, function(err) {
-            if (err) return client.send({'error': 'could not send to display'});
+            if (err) return client.send({error: 'could not send to display'});
             broadcast({pixel: {x: m.x, y: m.y}});
           });
           break;
         default:
-          client.send({error: 'unknown message'});
+          client.send({error: 'unknown message key'});
           break;
       }
     }
