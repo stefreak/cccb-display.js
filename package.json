@@ -5,7 +5,7 @@
     "main" : "./index.js",
     "repository" : {
         "type" : "git",
-        "url" : "http://github.com/stefreak/cccb-display.js.git"
+        "url" : "git://github.com/stefreak/cccb-display.js.git"
     },
     "keywords": [
         "cccb",
