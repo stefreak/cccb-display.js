@@ -12,16 +12,15 @@ server = http.createServer(function(req, res){
   switch (path){
     case '/':
       path = '/index.html';
-    case '/index.html':
-    case '/style.css':
-    case '/client.js':
-    case '/jquery-1.5.1.min.js':
-      sendFile(res, path);
       break;
-    default:
-      send404(res);
+    case '/draw/':
+      path = '/draw/index.html';
+      break;
+    case '/write/':
+      path = '/write/index.html';
       break;
   }
+  sendFile(res, path);
 });
 
 function send404(res){

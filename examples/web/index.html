@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/style.css" type="text/css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/templating.js"></script>
+    <script src="/js/jquery-1.5.1.min.js"></script>
+    <script src="/js/menu.js"></script>
+    <script src="/js/display.js"></script>
+
+    <!-- Templates -->
+    <script id="write" type="text/html">
+      <p>TODO</p>
+      <textarea></textarea>
+    </script>
+    <script id="draw" type="text/html">
+      <p>TODO</p>
+      <canvas width="600" height="300"></canvas>
+    </script>
+    <script id="default" type="text/html">
+      <div class="text">
+        <h1>Welcome :)</h1>
+        Choose your app.
+        <h2>How to hack around</h2>
+        <p>Open up some Javascript console of your browser and look at the display object.</p>
+        <p>Examples:</p>
+        <code>
+          display.clear();<br>
+          display.request({cmd:3, data:"hello world"});<br>
+          display.request({cmd:3, x:5, y:5, data:"hello world"});<br>
+          display.request({cmd:3, x:5, y:5, w:1, h:11 data:"hello world"});<br>
+        </code>
+      </div>
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="menu">
+        <a href="#">Home</a>
+        <a href="#write">Write</a>
+        <a href="#draw">Draw</a>
+      </div>
+      <div id="content">
+        <noscript>You really need Javascript for this.</noscript>
+      </div>
+      <div id="debug">
+        Connecting...
+      </div>
+    </div>
+  </body>
+</html>

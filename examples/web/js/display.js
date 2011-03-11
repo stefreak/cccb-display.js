@@ -2,22 +2,17 @@ var display;
 
 (function($){
   Display = function() {
-    var self = this
-      , canvas = $('#canvas')
-      ;
+    var self = this;
 
     self.socket = new io.Socket(null, {port: location.port, rememberTransport: false});
     self.socket.connect();
-    
+
     self.socket.on('message', function(msg){
       for (key in msg) {
         m = msg[key];
         switch (key) {
           case 'welcome':
-            $('#debug').text('Connected. Click into the canvas to draw on the display :)');
-            break;
-          case 'pixel':
-            //drawCanvasPixel(pos.x, pos.y);
+            $('#debug').text('Connected :)');
             break;
           case 'error':
             $('#debug').text('Error: ' + m);
@@ -31,10 +26,6 @@ var display;
     self.socket.on('error', function(err) {
       $('#debug').text('Error!');
     });
-
-    canvas.mousemove(function(e) {
-      self.socket.send({pixel: {x: e.offsetX, y:e.offsetY}});
-    }, false);
   }
 
   Display.prototype.clear = function(){
@@ -46,7 +37,6 @@ var display;
     this.socket.send({request: req});
   }
 
-  $(document).ready(function(){
-    display = new Display();
-  });
+  // export
+  display = new Display();
 })(jQuery)

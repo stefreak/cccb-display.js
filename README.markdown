@@ -7,5 +7,4 @@ können einzelne Pixel auch angesteuert werden.
 Durch diese library (und dem Node.js Ökosystem) wird es sehr einfach das Display
 durch Spiele oder andere kollaborative Anwendungen gemeinsam zu benutzen.
 
-Unter `examples/websocket-draw` ist eine (noch nicht ganz fertige) Mal-Anwendung zu
-finden, die das HTML5 `canvas`-Element und Websockets (`Socket.io`) verwendet.
+Schau dir auf jeden Fall `examples/web/` an.
