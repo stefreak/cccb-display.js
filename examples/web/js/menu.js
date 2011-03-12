@@ -1,16 +1,16 @@
 (function($){
   function chpage(){
-    var template, name;
+    var html, name;
 
     if (location.hash[0] === '#') {
       name = location.hash.substr(1);
-      template = $('script#' + name).html();
+      html = $('script#' + name).html();
     }
-    if (!template)
-      template = $('script#default').html();
+    if (!html)
+      html = $('script#default').html();
 
     // apply
-    $('#content').html(tmpl(template));
+    $('#content').html(html);
 
     if (name)
       $('body').append('<script src="/js/'+ name +'.js"></script>');
