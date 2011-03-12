@@ -23,6 +23,7 @@
 
   display.clear();
   $(window).bind('keydown', function() {
+    // next tick
     setTimeout(function(){
       send(textarea.val());
     }, 0);
