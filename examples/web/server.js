@@ -9,17 +9,11 @@ var disp = new display.Display();
 
 server = http.createServer(function(req, res){
   var path = url.parse(req.url).pathname;
-  switch (path){
-    case '/':
-      path = '/index.html';
-      break;
-    case '/draw/':
-      path = '/draw/index.html';
-      break;
-    case '/write/':
-      path = '/write/index.html';
-      break;
-  }
+
+  // index document
+  if (path[path.length-1] === '/')
+    path += 'index.html';
+
   sendFile(res, path);
 });
 
@@ -54,7 +48,8 @@ function sendFile(res, path) {
 server.listen(8080);
 console.log('Webserver running at http://127.0.0.1:8080/\n');
 
-var clients = [];
+var clients = []
+  ;
 
 var io = io.listen(server);
 io.on('connection', function(client){
