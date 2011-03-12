@@ -12,7 +12,7 @@
           line += empty.substr(0, 56 - line.length);
         else
           line = line.substr(0, 56);
-        display.request({cmd: 3, data: line, y: l});
+        display.request({cmd: 3, y: l, data: line});
       }
     }
 
@@ -22,7 +22,9 @@
   var textarea = $('textarea');
 
   display.clear();
-  $(window).bind('keyup', function() {
-    send(textarea.val());
+  $(window).bind('keydown', function() {
+    setTimeout(function(){
+      send(textarea.val());
+    }, 0);
   });
 })(jQuery);
