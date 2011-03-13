@@ -32,6 +32,11 @@
       lastY = y;
     });
 
+    $(canvas).mouseover(function(e) {
+      lastX = e.offsetX;
+      lastY = e.offsetY;
+    });
+
     $(canvas).bind('mouseup', function(){
       $(canvas).unbind('mousemove');
       lastX = null;
