@@ -37,6 +37,21 @@ var display;
     this.socket.send({request: req});
   }
 
+  Display.prototype.pixel = function(x, y, lx, ly) {
+    this.socket.send({pixel: {x:x, y:y, lx:lx, ly:ly}});
+  }
+
+  Display.prototype.onPixel = function(callback) {
+    this.socket.on('message', function(msg){
+      for (key in msg) {
+        m = msg[key];
+        if (key === 'pixel') {
+          callback(m);
+        }
+      }
+    });
+  }
+
   // export
   display = new Display();
 })(jQuery)

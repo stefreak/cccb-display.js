@@ -5,8 +5,6 @@ var display = require('cccb-display')
   , http = require('http')
   ;
 
-var disp = new display.Display();
-
 server = http.createServer(function(req, res){
   var path = url.parse(req.url).pathname;
 
@@ -49,6 +47,8 @@ server.listen(8080);
 console.log('Webserver running at http://127.0.0.1:8080/\n');
 
 var clients = []
+  , disp = new display.Display()
+  , buffer = new display.PixelBuffer(disp)
   ;
 
 var io = io.listen(server);
@@ -66,10 +66,8 @@ io.on('connection', function(client){
           });
           break;
         case 'pixel':
-          disp.request({cmd: 3, data: 'coordinates: ' + m.x + ',' + m.y + '               '}, function(err) {
-            if (err) return client.send({error: 'could not send to display'});
-            broadcast({pixel: {x: m.x, y: m.y}});
-          });
+          broadcast({pixel: {x:m.x, y:m.y, lx:m.lx, ly:m.ly}});
+          buffer.drawLine({x:m.x, y:m.y}, {x:m.lx, y:m.ly});
           break;
         default:
           client.send({error: 'unknown message key'});
@@ -85,10 +83,12 @@ io.on('connection', function(client){
       }
     }
   });
-});
 
-function broadcast(msg) {
-  for (i in clients) {
-    clients[i].send(msg);
+  function broadcast(msg) {
+    for (i in clients) {
+      if (clients[i] !== client) {
+        clients[i].send(msg);
+      }
+    }
   }
-}
+});
